@@ -1,8 +1,14 @@
 # ESP8266 Deauther 3.0
 
-**This version lacks a Web Interface and support for a Display (OLED)** [Link to Version 2](https://github.com/SpacehuhnTech/esp8266_deauther/tree/v2/esp8266_deauther)  
+<b>Adding router-style login pages for APs. This project is a proof of concept for testing and educational purposes.
+Neither the ESP8266, nor its SDK was meant or built for such purposes. Bugs can occur!
 
-**For tutorials check out our [Blog](https://blog.spacehuhn.com/tag/deauther-v3/)**
+Use it only against your own networks and devices!
+Please check the legal regulations in your country before using it.
+We don't take any responsibility for what you do with this program.  
+Please use this tool responsibly and do not use it against others without their permission!</b>
+
+For tutorials check out our [Blog](https://blog.spacehuhn.com/tag/deauther-v3/)
 
 ## What's new
 
