@@ -10,6 +10,9 @@ Please use this tool responsibly and do not use it against others without their 
 
 For tutorials check out our [Blog](https://blog.spacehuhn.com/tag/deauther-v3/)
 
+## Current Router Pages
+- Generic D-Link 
+
 ## What's new
 
 👉 You can now use [serial.huhn.me](https://serial.huhn.me), our web based serial terminal, for Deauther V3. 
