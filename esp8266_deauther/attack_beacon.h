@@ -158,16 +158,16 @@ void startBeacon(const beacon_attack_settings_t& settings) {
         debuglnF("[ ===== Beacon Attack ===== ]");
 
         debugF("BSSID:               ");
-        debugln(strh::mac(beacon_data.settings.bssid));
+        Debugger::debugln(strh::mac(beacon_data.settings.bssid));
 
         debugF("Receiver:            ");
-        debugln(strh::mac(beacon_data.settings.receiver));
+        Debugger::debugln(strh::mac(beacon_data.settings.receiver));
 
         debugF("Channels:            ");
-        debugln(strh::channels(beacon_data.settings.channels));
+        Debugger::debugln(strh::channels(beacon_data.settings.channels));
 
         debugF("Packets/s per SSID:  ");
-        debugln(beacon_data.settings.pkt_rate);
+        Debugger::debugln(beacon_data.settings.pkt_rate);
 
         debugF("Encryption:          ");
 
@@ -181,16 +181,16 @@ void startBeacon(const beacon_attack_settings_t& settings) {
         }
 
         debugF("Timeout:             ");
-        if (beacon_data.settings.timeout > 0) debugln(strh::time(beacon_data.settings.timeout));
+        if (beacon_data.settings.timeout > 0) Debugger::debugln(strh::time(beacon_data.settings.timeout));
         else debuglnF("-");
 
         debugF("Authentication Scan: ");
-        debugln(beacon_data.settings.scan ? F("On") : F("Off"));
+        Debugger::debugln(beacon_data.settings.scan ? F("On") : F("Off"));
 
         debugF("SSIDs:               ");
-        debugln(beacon_data.settings.ssids.size());
+        Debugger::debugln(beacon_data.settings.ssids.size());
 
-        debugln();
+        Debugger::debugln();
 
         debuglnF("SSID                               BSSID");
         debuglnF("====================================================");
@@ -203,15 +203,15 @@ void startBeacon(const beacon_attack_settings_t& settings) {
         while (beacon_data.settings.ssids.available()) {
             debug(strh::left(34, '"' + beacon_data.settings.ssids.iterate() + '"'));
             debug(' ');
-            debugln(strh::mac(bssid));
+            Debugger::debugln(strh::mac(bssid));
             bssid[5]++;
         }
 
         debuglnF("====================================================");
 
-        debugln();
+        Debugger::debugln();
         debuglnF("Type 'stop beacon' receiver stop the attack");
-        debugln();
+        Debugger::debugln();
     }
 
     if (beacon_data.settings.scan) {

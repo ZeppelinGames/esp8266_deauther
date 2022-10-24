@@ -15,24 +15,24 @@ extern "C" {
 }
 
 #include "config.h"
-
-#ifdef DEBUG_SYSH
 #include "debug.h"
-#include "strh.h"
-#else // ifdef DEBUG_SYSH
-#define debug(...) 0
-#define debugln(...) 0
-#define debugf(...) 0
-#define debugF(...) 0
-#define debuglnF(...) 0
-#endif // ifdef DEBUG_SYSH
+//#ifdef DEBUG_SYSH
+//#include "debug.h"
+//#include "strh.h"
+//#else // ifdef DEBUG_SYSH
+//#define debug(...) 0
+//#define debugln(...) 0
+//#define debugf(...) 0
+//#define debugF(...) 0
+//#define debuglnF(...) 0
+//#endif // ifdef DEBUG_SYSH
 
 namespace sysh {
     void channel(uint8_t ch) {
         if (wifi_get_channel() != ch) {
             wifi_set_channel(ch);
             debugF("[Sysh] Set channel ");
-            debugln(String(ch));
+            Debugger::debugln(String(ch));
         }
     }
 
@@ -65,7 +65,7 @@ namespace sysh {
         } while (!((channels >> (ch-1)) & 0x01));
 
         debugF("[Sysh] Get next channel ");
-        debugln(String(ch));
+        Debugger::debugln(String(ch));
 
         return ch;
     }

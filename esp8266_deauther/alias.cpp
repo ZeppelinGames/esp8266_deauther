@@ -187,7 +187,7 @@ namespace alias {
 
     void print() {
         debugF("MAC Alias List: ");
-        debugln(list.size);
+        Debugger::debugln(list.size);
         debuglnF("------------------");
 
         debuglnF(" ID Name         MAC-Address       Vendor");
@@ -201,10 +201,10 @@ namespace alias {
             debug(strh::left(17, strh::mac(list.data[i].mac)));
             debug(' ');
             debug(strh::left(8, vendor::getName(list.data[i].mac)));
-            debugln();
+            Debugger::debugln();
         }
         debuglnF("===========================================");
 
-        debugln();
+        Debugger::debugln();
     }
 }

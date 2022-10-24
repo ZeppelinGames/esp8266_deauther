@@ -116,7 +116,7 @@ namespace scan {
 
     void print(const result_filter_t* filter) {
         debuglnF("[ ========== Scan Results ========== ]");
-        debugln();
+        Debugger::debugln();
 
         if (!filter || filter->aps) printAPs(filter);
         if (!filter || filter->sts) printSTs(filter);

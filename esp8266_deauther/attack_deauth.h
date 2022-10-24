@@ -107,21 +107,21 @@ void startDeauth(const deauth_attack_settings_t& settings) {
         }
 
         debugF("Packets/second: ");
-        debugln(deauth_data.settings.pkt_rate);
+        Debugger::debugln(deauth_data.settings.pkt_rate);
 
         debugF("Timeout:        ");
-        if (deauth_data.settings.timeout > 0) debugln(strh::time(deauth_data.settings.timeout));
-        else debugln('-');
+        if (deauth_data.settings.timeout > 0) Debugger::debugln(strh::time(deauth_data.settings.timeout));
+        else Debugger::debugln('-');
 
         debugF("Max. packets:   ");
-        if (deauth_data.settings.max_pkts > 0) debugln(deauth_data.settings.max_pkts);
-        else debugln('-');
+        if (deauth_data.settings.max_pkts > 0) Debugger::debugln(deauth_data.settings.max_pkts);
+        else Debugger::debugln('-');
 
         debugF("Targets:        ");
-        debugln(deauth_data.settings.targets.size());
+        Debugger::debugln(deauth_data.settings.targets.size());
 
         // Print Target Data
-        debugln();
+        Debugger::debugln();
         debuglnF("Sender MAC        Receiver MAC      Channels");
         debuglnF("====================================================================");
 
@@ -133,14 +133,14 @@ void startDeauth(const deauth_attack_settings_t& settings) {
             debug(' ');
             debug(strh::mac(t->receiver));
             debug(' ');
-            debugln(strh::channels(t->channels));
+            Debugger::debugln(strh::channels(t->channels));
         }
 
         debuglnF("====================================================================");
 
-        debugln();
+        Debugger::debugln();
         debuglnF("Type 'stop deauth' to stop the attack");
-        debugln();
+        Debugger::debugln();
     }
 }
 

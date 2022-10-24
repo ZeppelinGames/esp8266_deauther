@@ -36,11 +36,11 @@ void startAP(const ap_scan_settings_t& settings) {
         debuglnF("[ ========== Scan for Access Points ========== ]");
 
         debugF("Channels:     ");
-        debugln(strh::channels(ap_data.settings.channels));
+        Debugger::debugln(strh::channels(ap_data.settings.channels));
 
-        debugln();
+        Debugger::debugln();
         debuglnF("Type 'stop scan' to stop the scan");
-        debugln();
+        Debugger::debugln();
     }
 
     WiFi.mode(WIFI_STA);
@@ -55,7 +55,7 @@ void stopAP() {
         ap_data.enabled = false;
 
         debuglnF("> Stopped access point scan");
-        debugln();
+        Debugger::debugln();
 
         if (ap_data.settings.st) {
             printAPs();

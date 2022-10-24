@@ -93,35 +93,35 @@ void startRSSI(const rssi_scan_settings_t& settings) {
         debuglnF("[ ===== RSSI Scan ===== ]");
 
         debugF("Channels:      ");
-        debugln(strh::channels(rssi_data.settings.channels));
+        Debugger::debugln(strh::channels(rssi_data.settings.channels));
 
         debugF("Channel time:  ");
-        if (rssi_data.settings.ch_time > 0) debugln(strh::time(rssi_data.settings.ch_time));
+        if (rssi_data.settings.ch_time > 0) Debugger::debugln(strh::time(rssi_data.settings.ch_time));
         else debuglnF("-");
 
         debugF("Refresh time:  ");
-        debugln(strh::time(rssi_data.settings.update_time));
+        Debugger::debugln(strh::time(rssi_data.settings.update_time));
 
         debugF("MAC addresses: ");
-        debugln(rssi_data.settings.macs.size());
+        Debugger::debugln(rssi_data.settings.macs.size());
 
         if (!rssi_data.settings.macs.empty()) {
-            debugln();
+            Debugger::debugln();
             debuglnF("MAC");
             debuglnF("=================");
 
             rssi_data.settings.macs.begin();
 
             while (rssi_data.settings.macs.available()) {
-                debugln(strh::mac(rssi_data.settings.macs.iterate()));
+                Debugger::debugln(strh::mac(rssi_data.settings.macs.iterate()));
             }
 
             debuglnF("===================");
         }
 
-        debugln();
+        Debugger::debugln();
         debuglnF("Type 'stop rssi' to stop the scan");
-        debugln();
+        Debugger::debugln();
 
         debuglnF("RSSI      Packets");
         debuglnF("===================");
@@ -141,9 +141,9 @@ void stopRSSI() {
         rssi_data.settings.macs.clear();
 
         debuglnF("===================");
-        debugln();
+        Debugger::debugln();
         debuglnF("> Stopped RSSI scanner");
-        debugln();
+        Debugger::debugln();
     }
 }
 

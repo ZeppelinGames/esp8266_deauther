@@ -2,7 +2,7 @@
    Copyright (c) 2020 Stefan Kremser (@Spacehuhn)
    This software is licensed under the MIT License. See the license file for details.
    Source: github.com/spacehuhn/esp8266_deauther
- */
+*/
 
 #pragma once
 
@@ -13,13 +13,17 @@
 
 #ifdef ENABLE_DEBUG
 
-#define debug_init()\
-    DEBUG_PORT.begin(DEBUG_BAUD);\
-    DEBUG_PORT.setTimeout(LONG_MAX);\
-    DEBUG_PORT.println();
+void debug_init();
+
+class Debugger {
+  public:
+    template <typename T>
+    static void debugln(T t);
+    
+    static void debugln();
+};
 
 #define debug(...) DEBUG_PORT.print(__VA_ARGS__)
-#define debugln(...) DEBUG_PORT.println(__VA_ARGS__)
 #define debugf(...) DEBUG_PORT.printf(__VA_ARGS__)
 #define debugF(...) DEBUG_PORT.print(F(__VA_ARGS__))
 #define debuglnF(...) DEBUG_PORT.println(F(__VA_ARGS__))

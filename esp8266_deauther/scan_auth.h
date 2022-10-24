@@ -94,42 +94,42 @@ void startAuth(const auth_scan_settings_t& settings) {
         debuglnF("[ ===== Authentication Scan ===== ]");
 
         debugF("Scan time:     ");
-        if (auth_data.settings.timeout > 0) debugln(strh::time(auth_data.settings.timeout));
+        if (auth_data.settings.timeout > 0) Debugger::debugln(strh::time(auth_data.settings.timeout));
         else debuglnF("-");
 
         debugF("Channels:      ");
-        debugln(strh::channels(auth_data.settings.channels));
+        Debugger::debugln(strh::channels(auth_data.settings.channels));
 
         debugF("Channel time:  ");
-        if (auth_data.settings.ch_time > 0) debugln(strh::time(auth_data.settings.ch_time));
+        if (auth_data.settings.ch_time > 0) Debugger::debugln(strh::time(auth_data.settings.ch_time));
         else debuglnF("-");
 
         debugF("Beacon Mode:   ");
-        debugln(auth_data.settings.beacon ? F("On") : F("Off"));
+        Debugger::debugln(auth_data.settings.beacon ? F("On") : F("Off"));
 
         debugF("Save stations: ");
-        debugln(auth_data.settings.save ? F("Yes") : F("No"));
+        Debugger::debugln(auth_data.settings.save ? F("Yes") : F("No"));
 
         debugF("BSSID filter:  ");
-        debugln(auth_data.settings.bssids.size());
+        Debugger::debugln(auth_data.settings.bssids.size());
 
         if (!auth_data.settings.bssids.empty()) {
-            debugln();
+            Debugger::debugln();
             debuglnF("BSSID");
             debuglnF("=================");
 
             auth_data.settings.bssids.begin();
 
             while (auth_data.settings.bssids.available()) {
-                debugln(strh::mac(auth_data.settings.bssids.iterate()));
+                Debugger::debugln(strh::mac(auth_data.settings.bssids.iterate()));
             }
 
             debuglnF("=================");
         }
 
-        debugln();
+        Debugger::debugln();
         debuglnF("Type 'stop auth' to stop the scan");
-        debugln();
+        Debugger::debugln();
 
         debuglnF("RSSI Ch Vendor   MAC-Address       SSID                               BSSID");
         debuglnF("=======================================================================================");
@@ -151,9 +151,9 @@ void stopAuth() {
         debuglnF("=======================================================================================");
         debuglnF("Ch = 2.4 GHz Channel    ,    RSSI = Signal strength    ,    BSSID = Network MAC address");
         debuglnF("=======================================================================================");
-        debugln();
+        Debugger::debugln();
         debuglnF("> Stopped authentication scan");
-        debugln();
+        Debugger::debugln();
     }
 }
 
@@ -183,7 +183,7 @@ void update_auth_scan() {
             if (attack::beaconBSSID(tmp.bssid)) {
                 debug(strh::left(34, '"'+attack::getBeacon(tmp.bssid[5])+'"'));
                 debug(' ');
-                debugln(strh::left(17, alias::get(tmp.bssid)));
+                Debugger::debugln(strh::left(17, alias::get(tmp.bssid)));
                 return;
             }
 
@@ -192,14 +192,14 @@ void update_auth_scan() {
             if (ap) {
                 debug(strh::left(34, ap->getSSIDString()));
                 debug(' ');
-                debugln(strh::left(17, ap->getBSSIDString()));
+                Debugger::debugln(strh::left(17, ap->getBSSIDString()));
                 return;
             }
 
             // Unknown AP
             debug(strh::left(34, "*UNKNOWN*"));
             debug(' ');
-            debugln(strh::left(17, alias::get(tmp.bssid)));
+            Debugger::debugln(strh::left(17, alias::get(tmp.bssid)));
         }
 
         if ((auth_data.settings.ch_time > 0) && (!auth_data.settings.beacon) && (current_time - auth_data.ch_update_time >= auth_data.settings.ch_time)) {
