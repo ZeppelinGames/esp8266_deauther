@@ -128,14 +128,14 @@ void Station::print(int id, const result_filter_t* f) {
 
     while (getProbes().available()) {
         if (!first) {
-            Debugger::debugln();
+            debugln();
             debug(strh::whitespace(94));
         }
         debug('"' + getProbes().iterate() + '"');
         first = false;
     }
 
-    Debugger::debugln();
+    debugln();
 
     printed_flag = true;
 }
@@ -281,7 +281,7 @@ void StationList::printFooter() {
     debuglnF("Pkts = Recorded packets , RSSI = Average signal strength");
     debuglnF("================================================================================================================================");
 
-    Debugger::debugln();
+    debugln();
 }
 
 void StationList::print(const result_filter_t* filter) {
@@ -289,7 +289,7 @@ void StationList::print(const result_filter_t* filter) {
 
     if (size() == 0) {
         debuglnF("No stations found. Type 'scan st' to search.");
-        Debugger::debugln();
+        debugln();
     } else {
         printHeader();
 

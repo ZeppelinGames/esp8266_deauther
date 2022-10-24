@@ -71,14 +71,14 @@ uint8_t* client_to_mac(IPAddress ip) {
                 debug(strh::left(15, address.toString()));
                 debug(' ');
                 debug(strh::left(17, strh::mac(stat_info->bssid)));
-                Debugger::debugln();*/
+                debugln();*/
     }
     stat_info = STAILQ_NEXT(stat_info, next);
     ++i;
   }
 
   //debuglnF("====================================");
-  //Debugger::debugln();
+  //debugln();
 
   return NULL;
 }
@@ -98,28 +98,28 @@ void handle_404() {
     debug("=");
     debug(server.arg(i));
   }
-  Debugger::debugln();
+  debugln();
 }
 
 // ========== PUBLIC ========= //
 void start(String& ssid, String& pswd, bool hidden, uint8_t ch, uint8_t* bssid) {
   if (ssid.length() == 0) {
-    Debugger::debugln("ERROR: SSID empty");
+    debugln("ERROR: SSID empty");
     return;
   }
 
   if (ssid.length() > 32) {
-    Debugger::debugln("WARNING: SSID longer than 32 characters");
+    debugln("WARNING: SSID longer than 32 characters");
     ssid = ssid.substring(0, 32);
   }
 
   if (pswd.length() > 0 && pswd.length() < 8) {
-    Debugger::debugln("WARNING: Password must have at least 8 characters");
+    debugln("WARNING: Password must have at least 8 characters");
     pswd = String();
   }
 
   if (ch < 1 || ch > 14) {
-    Debugger::debugln("WARNING: Channel must be between 1-14");
+    debugln("WARNING: Channel must be between 1-14");
     ch = 1;
   }
 
@@ -150,24 +150,24 @@ void start(String& ssid, String& pswd, bool hidden, uint8_t ch, uint8_t* bssid) 
   debuglnF("[ ========= Access Point ========= ]");
 
   debugF("SSID:      ");
-  Debugger::debugln(ap_settings.ssid);
+  debugln(ap_settings.ssid);
 
   debugF("Password:  ");
-  Debugger::debugln(ap_settings.pswd);
+  debugln(ap_settings.pswd);
 
   debugF("Mode:      ");
-  //Debugger::debugln(ap_settings.pswd == '\0' ? "WPA2" : "Open");
+  //debugln(ap_settings.pswd == '\0' ? "WPA2" : "Open");
 
   debugF("Hidden:    ");
-  Debugger::debugln(strh::boolean(ap_settings.hidden));
+  debugln(strh::boolean(ap_settings.hidden));
 
   debugF("Channel:   ");
-  Debugger::debugln(ap_settings.ch);
+  debugln(ap_settings.ch);
 
   debugF("BSSID:     ");
-  Debugger::debugln(strh::mac(ap_settings.bssid));
+  debugln(strh::mac(ap_settings.bssid));
 
-  Debugger::debugln();
+  debugln();
 
   debuglnF("Type 'stop ap' to stop the access point");
 
@@ -191,7 +191,7 @@ void stop() {
     ap_settings.paused = false;
 
     debuglnF("> Stopped access point");
-    Debugger::debugln();
+    debugln();
   }
 }
 
@@ -210,7 +210,7 @@ void resume() {
     ap_settings.paused = false;
 
     debuglnF("> Resumed access point");
-    Debugger::debugln();
+    debugln();
   }
 }
 

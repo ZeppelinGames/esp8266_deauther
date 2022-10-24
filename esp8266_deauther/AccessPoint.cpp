@@ -124,7 +124,7 @@ void AccessPoint::print(int id, const result_filter_t* f) {
     debug(strh::left(17, getBSSIDString()));
     debug(' ');
     debug(strh::left(8, getVendor()));
-    Debugger::debugln();
+    debugln();
 }
 
 // ========== AccessPointList ========== //
@@ -268,13 +268,13 @@ void AccessPointList::printFooter() {
     debuglnF("WPA(2) Enterprise networks are recognized as Open");
     debuglnF("==============================================================================");
 
-    Debugger::debugln();
+    debugln();
 }
 
 void AccessPointList::print(const result_filter_t* filter) {
     if (size() == 0) {
         debuglnF("No access points found. Type 'scan ap' to search.");
-        Debugger::debugln();
+        debugln();
     } else {
         printHeader();
 

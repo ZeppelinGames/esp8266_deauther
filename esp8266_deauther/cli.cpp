@@ -63,7 +63,7 @@ extern "C" {
   while (!_STOP);
 
 void rssi_meter_cb(int8_t rssi) {
-  Debugger::debugln(rssi);
+  debugln(rssi);
 }
 
 namespace cli {
@@ -166,7 +166,6 @@ uint16_t parse_channels(const String& ch_str) {
 // ===== PUBLIC ===== //
 void begin() {
   debug_init();
-  Debugger* debugger = new Debugger();
 
   debuglnF("\r\nSTARTED \\o/\r\n");
 
@@ -177,12 +176,12 @@ void begin() {
     debug(cmdError.toString());
 
     if (cmdError.hasCommand()) {
-      Debugger::debugln();
+      debugln();
       debugF("Did you mean:");
       debug(cmdError.getCommand().toString());
     }
 
-    Debugger::debugln();
+    debugln();
   });
 
   Command cmd_welcome = cli.addCommand("welcome", [](cmd * c) {
@@ -216,7 +215,7 @@ void begin() {
       String cmdNameStr = cmdName.getValue();
       Command tmp       = cli.getCommand(cmdNameStr);
       if (tmp) {
-        Debugger::debugln(tmp.toString(description));
+        debugln(tmp.toString(description));
       } else {
         debug(cmdNameStr);
         debuglnF(" not found :(");
@@ -237,7 +236,7 @@ void begin() {
     String cmd;
 
     debuglnF("Good morning friend!");
-    Debugger::debugln();
+    debugln();
 
     { // Command
       while (!(res == "scan" || res == "beacon" || res == "deauth" || res == "probe" || res == "alias" || res == "results")) {
@@ -632,10 +631,10 @@ void begin() {
     // Result
     debuglnF("> Exiting start command");
 
-    Debugger::debugln();
+    debugln();
     debugF("# ");
-    Debugger::debugln(cmd);
-    Debugger::debugln();
+    debugln(cmd);
+    debugln();
 
     cli::parse(cmd.c_str());
   });
@@ -1314,13 +1313,13 @@ void begin() {
 
       if (alias::remove(mac)) {
         debugF("Removed alias ");
-        Debugger::debugln(strh::mac(mac));
+        debugln(strh::mac(mac));
       } else if (alias::remove(name)) {
         debugF("Removed alias ");
-        Debugger::debugln(name);
+        debugln(name);
       } else if (alias::remove(name.toInt())) {
         debugF("Removed alias ");
-        Debugger::debugln(mac_str);
+        debugln(mac_str);
       }
       return;
     }
@@ -1353,7 +1352,7 @@ void begin() {
 
   Command cmd_clear = cli.addCommand("clear", [](cmd * c) {
     for (uint8_t i = 0; i < 100; ++i) {
-      Debugger::debugln();
+      debugln();
     }
   });
 
@@ -1428,7 +1427,7 @@ void begin() {
 
     while (history.available()) {
       debugF("  ");
-      Debugger::debugln(history.iterate());
+      debugln(history.iterate());
     }
   });
   cmd_history.setDescription("  Print previous 10 commands");
@@ -1516,12 +1515,12 @@ void begin() {
     if (alias::resolve(input, mac, 3)) {
       debug(strh::mac(mac, 3));
       debug(' ');
-      Debugger::debugln(vendor::getName(mac));
+      debugln(vendor::getName(mac));
     } else {
       vendor::getMAC(input, !exact, [](const uint8_t* mac, const char* name) {
         debug(strh::mac(mac, 3));
         debug(' ');
-        Debugger::debugln(name);
+        debugln(name);
       });
     }
     debuglnF("=================");
@@ -1533,7 +1532,7 @@ void begin() {
                             "  -e:   list only exact matchess");
 
   Command cmd_wait = cli.addCommand("wait", [](cmd * c) {
-    Debugger::debugln("> Paused CLI");
+    debugln("> Paused CLI");
     cli.pause();
   });
   cmd_wait.setDescription("  Wait until scan or attack has finished");
@@ -1580,10 +1579,10 @@ void begin() {
 
     if (mode == "on") {
       strh::hide_mac(true);
-      Debugger::debugln("Demo Mode: ACTIVATED");
+      debugln("Demo Mode: ACTIVATED");
     } else {
       strh::hide_mac(false);
-      Debugger::debugln("Demo Mode: DEACTIVATED");
+      debugln("Demo Mode: DEACTIVATED");
     }
   });
   cmd_demo.addPosArg("m/ode", "on");
@@ -1660,8 +1659,8 @@ bool read(String& dest, const char* _default) {
 
   // Add linebreak and print empty line after input
   if (printed) {
-    Debugger::debugln();
-    Debugger::debugln();
+    debugln();
+    debugln();
     return true;
   }
 
@@ -1679,7 +1678,7 @@ bool read_exit() {
 
 void update() {
   if (cli.paused() && (((timer == 0) && !scan::active() && !attack::active()) || ((timer > 0) && (millis() > timer)))) {
-    Debugger::debugln("> Resumed CLI");
+    debugln("> Resumed CLI");
     cli.unpause();
     timer = 0;
   }

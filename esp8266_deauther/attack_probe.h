@@ -113,39 +113,43 @@ void startProbe(const probe_attack_settings_t& settings) {
     { // Output
         debuglnF("[ ===== Probe Attack ===== ]");
         debugF("Sender:             ");
-        Debugger::debugln(strh::mac(probe_data.settings.sender));
+        debugln(strh::mac(probe_data.settings.sender));
 
         debugF("Receiver:           ");
-        Debugger::debugln(strh::mac(probe_data.settings.receiver));
+        debugln(strh::mac(probe_data.settings.receiver));
 
         debugF("Channels:           ");
-        Debugger::debugln(strh::channels(probe_data.settings.channels));
+        debugln(strh::channels(probe_data.settings.channels));
 
         debugF("Packets/s per SSID: ");
-        Debugger::debugln(probe_data.settings.pkt_rate);
+        debugln(probe_data.settings.pkt_rate);
 
         debugF("Timeout:            ");
-        if (probe_data.settings.timeout > 0) Debugger::debugln(strh::time(probe_data.settings.timeout));
-        else debuglnF("-");
+        if (probe_data.settings.timeout > 0) {
+          debugln(strh::time(probe_data.settings.timeout));
+        }
+        else {
+          debuglnF("-");
+        }
 
         debugF("SSID:               ");
-        Debugger::debugln(probe_data.settings.ssids.size());
+        debugln(probe_data.settings.ssids.size());
 
         // Print SSID List
-        Debugger::debugln();
+        debugln();
         debuglnF("SSID");
         debuglnF("==================================");
 
         probe_data.settings.ssids.begin();
 
         while (probe_data.settings.ssids.available()) {
-            Debugger::debugln(strh::left(32, '"'+probe_data.settings.ssids.iterate()+'"'));
+            debugln(strh::left(32, '"'+probe_data.settings.ssids.iterate()+'"'));
         }
         debuglnF("==================================");
 
-        Debugger::debugln();
+        debugln();
         debuglnF("Type 'stop probe' to stop the attack");
-        Debugger::debugln();
+        debugln();
     }
 }
 

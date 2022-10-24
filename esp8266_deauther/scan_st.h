@@ -137,19 +137,27 @@ void startST(const st_scan_settings_t& settings) {
         debuglnF("[ ===== Scan for Stations ===== ]");
 
         debugF("Scan time:    ");
-        if (st_data.settings.timeout > 0) Debugger::debugln(strh::time(st_data.settings.timeout));
-        else debuglnF("-");
+        if (st_data.settings.timeout > 0) {
+          debugln(strh::time(st_data.settings.timeout));
+        }
+        else {
+          debuglnF("-");
+        }
 
         debugF("Channel time: ");
-        if (st_data.settings.ch_time > 0) Debugger::debugln(strh::time(st_data.settings.ch_time));
-        else debuglnF("-");
+        if (st_data.settings.ch_time > 0) {
+          debugln(strh::time(st_data.settings.ch_time));
+        }
+        else {
+          debuglnF("-");
+        }
 
         debugF("Channels:     ");
-        Debugger::debugln(strh::channels(st_data.settings.channels));
+        debugln(strh::channels(st_data.settings.channels));
 
-        Debugger::debugln();
+        debugln();
         debuglnF("Type 'stop scan' to stop the scan");
-        Debugger::debugln();
+        debugln();
 
         st_list.printHeader();
     }
@@ -174,7 +182,7 @@ void stopST() {
         st_list.printFooter();
 
         debuglnF("> Stopped station scan");
-        Debugger::debugln();
+        debugln();
 
         print();
 

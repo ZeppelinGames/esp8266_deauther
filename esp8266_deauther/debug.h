@@ -11,22 +11,34 @@
 #include <climits>   // LONG_MAX
 #include <Arduino.h> // Serial
 
+#include "Display.h";
+
 #ifdef ENABLE_DEBUG
+#define debug_init()\
+  DEBUG_PORT.begin(DEBUG_BAUD);\
+  DEBUG_PORT.setTimeout(LONG_MAX);\
+  DEBUG_PORT.println();\
+  Display::display_init();
 
-void debug_init();
+#define debug(...)\
+  DEBUG_PORT.print(__VA_ARGS__);\
+  Display::debug(__VA_ARGS__);
 
-class Debugger {
-  public:
-    template <typename T>
-    static void debugln(T t);
-    
-    static void debugln();
-};
+#define debugln(...)\
+  DEBUG_PORT.println(__VA_ARGS__);\
+  Display::debugln(__VA_ARGS__);
 
-#define debug(...) DEBUG_PORT.print(__VA_ARGS__)
-#define debugf(...) DEBUG_PORT.printf(__VA_ARGS__)
-#define debugF(...) DEBUG_PORT.print(F(__VA_ARGS__))
-#define debuglnF(...) DEBUG_PORT.println(F(__VA_ARGS__))
+#define debugf(...)\
+  DEBUG_PORT.printf(__VA_ARGS__);\
+  Display::debugln(__VA_ARGS__);
+
+#define debugF(...)\
+  DEBUG_PORT.print(F(__VA_ARGS__));
+  //Display::debug(__VA_ARGS__);
+
+#define debuglnF(...)\
+  DEBUG_PORT.println(F(__VA_ARGS__));
+  //Display::debugln(__VA_ARGS__);
 
 #define debug_available() DEBUG_PORT.available()
 #define debug_read() DEBUG_PORT.read()
@@ -37,7 +49,7 @@ class Debugger {
 #define debug_init() 0
 
 #define debug(...) 0
-#define debugln(...) 0
+//#define debugln(...) 0
 #define debugf(...) 0
 #define debugF(...) 0
 #define debuglnF(...) 0

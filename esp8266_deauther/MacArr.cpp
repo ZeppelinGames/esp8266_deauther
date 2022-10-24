@@ -20,7 +20,7 @@
 #include "strh.h"
 #else // ifdef DEBUG_MAC_ARR
 #define debug(...) 0
-#define Debugger::debugln(...) 0
+#define debugln(...) 0
 #define debugf(...) 0
 #define debugF(...) 0
 #define debuglnF(...) 0

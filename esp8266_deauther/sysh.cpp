@@ -32,7 +32,7 @@ namespace sysh {
         if (wifi_get_channel() != ch) {
             wifi_set_channel(ch);
             debugF("[Sysh] Set channel ");
-            Debugger::debugln(String(ch));
+            debugln(String(ch));
         }
     }
 
@@ -65,7 +65,7 @@ namespace sysh {
         } while (!((channels >> (ch-1)) & 0x01));
 
         debugF("[Sysh] Get next channel ");
-        Debugger::debugln(String(ch));
+        debugln(String(ch));
 
         return ch;
     }
